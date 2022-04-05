@@ -5,9 +5,10 @@ menu = "main"
 
 # About Me
 
-My name is Ashley James. This is a very minimal about page.
+Hi, I'm Ashley James.
 
-Website (you are here!): https://shadezero.netlify.app/  
-Email: ashleyjames2800@gmail.com  
-LinkedIn: https://www.linkedin.com/in/-ashley-james/
+Here are some places you can find me:  
+- Website (you are here!): https://shadezero.netlify.app/  
+- Email: ashleyjames2800@gmail.com  
+- LinkedIn: https://www.linkedin.com/in/-ashley-james/
 
