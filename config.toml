@@ -1,6 +1,6 @@
 # Base URL used when generating links to your pages
 # Set to the URL for your site
-baseURL = 'https://shadezero.example.com'
+baseURL = 'https://shadezero.netlify.app'
 
 # Name of this theme
 theme = 'hugo-bearblog'
