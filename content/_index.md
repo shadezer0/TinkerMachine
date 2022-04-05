@@ -1,21 +1,13 @@
-# 
+# Welcome to my Blog!
 
-There is a website obesity crisis. Bloated websites full of scripts, ads, and trackers are slowing your readers down every time they try to read your well-crafted content.
+Hi, I'm Ashley and I'm hoping to document my thoughts, ideas and personal projects in this tiny corner of the internet.
 
-Hugo Bear Blog is all you need to build a fantastic and optimized site or blog. It works perfectly on **any** viewing device. All you need to focus on is writing good content.
+I love to work on self-hosting and automation. I've only started out with the PiHole but the journey has only begun. I've recently set up a small home-server with the intent to host some of the cloud applications I use daily.  
 
-[Go to the original bear blog](https://bearblog.dev/).
-
----
-
-What happens when you combine the worlds' fastest, most lightweight static site generator with a design theme built to provide you with free, no-nonsense, super-fast blogging capabilities?
-
-**Use this theme, and find out!**
-
-Made with 💟 by [Jan Raasch](https://www.janraasch.com).
+I like to sit still in quiet contemplation and take a small moment to simmer in my thoughts. It doesn't always happen but when it does, I get some good insight that I'd like to jot down for later.
 
 ---
 
-Simply publish content online, grow an audience, and keep your pages tiny, fast, and **optimized for search engines**.
+This small site is made using [Hugo](https://gohugo.io/) and uses the [hugo-bearblog](https://github.com/janraasch/hugo-bearblog/) theme which in turn was inspired by the wonderful [ʕ•ᴥ•ʔ Bear Blog](https://bearblog.dev/). 
 
-Each page is ~5kb, and you can **host your blog yourself**.
+The contents of this blog can be found over at this [GitHub repo](https://github.com/shadezer0/shadezero). The build and deploy process for the resources on my GitHub page is done with the help of [Netlify](https://www.netlify.com/). 

@@ -2,10 +2,7 @@
 title = "Markdown Syntax Guide"
 date = "2020-01-03"
 description = "Sample article showcasing basic Markdown syntax and formatting for HTML elements."
-tags = [
-    "markdown",
-    "syntax",
-]
+tags = ["reference"]
 +++
 
 Copied over from the original theme to have a reference of the markdown syntax I'll be able to use.
@@ -132,3 +129,6 @@ Tables aren't part of the core Markdown spec, but Hugo supports supports them ou
 * Dairy
   * Milk
   * Cheese
+
+### My Notes
+- Enter two spaces to have the text go to a new line. 
