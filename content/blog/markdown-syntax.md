@@ -1,6 +1,6 @@
 +++
 title = "Markdown Syntax Guide"
-date = "2020-01-03"
+date = "2022-04-05"
 description = "Sample article showcasing basic Markdown syntax and formatting for HTML elements."
 tags = ["reference"]
 +++
