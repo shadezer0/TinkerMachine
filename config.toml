@@ -6,7 +6,7 @@ baseURL = 'https://shadezero.netlify.app'
 theme = 'hugo-bearblog'
 
 # Basic metadata configuration for your blog.
-title = "shadezero"
+title = "shadezero's blog"
 author = "Ashley James"
 copyright = "Copyright © 2022, Ashley James"
 languageCode = "en-US"
@@ -27,7 +27,7 @@ ignoreErrors = ["error-disable-taxonomy"]
 
   # The path to your "favicon". This should be a square (at least 32px x 32px) png-file.
   # Hint: It's good practise to also put a "favicon.ico"-file into your "static"-folder.
-#   favicon = "images/favicon.png"
+  favicon = "images/favicon.png"
 
   # These "images" are used for the structured data templates. This will show up, when
   # services like Twitter or Slack want to generate a preview of a link to your site.
