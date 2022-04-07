@@ -4,15 +4,19 @@ date = "2022-04-07"
 tags = ["self-hosting", "technical"]
 +++
 
+Pi-hole is a service which allows you to block ads on your entire network. That includes your smart TV where you usually wouldn't be able to install an ad-blocker. This technical wizardry happens because we are essentially running a [DNS sinkhole server](https://en.wikipedia.org/wiki/DNS_sinkhole). Pi-hole can do a couple of other nifty tricks but I'll just be focussing on setting up the ad-blocking capabilities for now. You could also pair this with a VPN (in case you want access from outside your home network) and even run it as your local DHCP server instead of your router.
+
 This post will go over how to setup [Pi-hole](https://pi-hole.net/) on a Raspberry Pi. Pi-hole will be running from a Docker container and managed using Docker Compose.
 
 ### Initial Setup
 -  Download the [Raspbian OS Lite image](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-32-bit) and flash it onto an SD card using [Balena Etcher](https://www.balena.io/etcher/).
 -  Add an empty file named `ssh` in the root directory named boot once the flashing of the image is completed. Ensure that there is no extension to the file.
 -  Connect the Raspberry Pi to the router via ethernet. Alternatively, Wifi can be setup, but the process is slightly longer.
-- Assign a static IP to the Pi through the router management settings so that the router doesn't assign the same IP through DHCP to any other device.
+- Assign a static IP to the Pi through the router management settings so that the router doesn't assign the same IP through <cite>DHCP[^1]</cite> to any other device.
 -  Try to SSH into the Pi with the static IP. In case you didn't assign a static IP from the earlier step, check the router management page to see what IP the router has dynamically assigned the Raspberry Pi. 
 - Get the latest updates for Raspbian and finish the initial setup.
+
+[^1]: DHCP or *Dynamic Host Configuration Protocol* describes the process by which the router dynamically assigns IP addresses to all the devices being connected on your home network. You can read more about it [here](https://docs.microsoft.com/en-us/windows-server/networking/technologies/dhcp/dhcp-top).
 
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -100,6 +104,8 @@ sed -e '/pihole updateGravity/ s/^#*/#/' -i /etc/cron.d/pihole
 # This will comment out the line in /etc/cron.d/pihole 
 # that runs the pihole updateGravity command
 ```
+
+- Now that you've got Pi-hole running successfully, don't forget to configure your router's DHCP to use the Pi as the DNS server for all clients. Another alternative would be to manually change the DNS server on individual devices.
 
 ### Issues
 
