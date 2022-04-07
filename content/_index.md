@@ -2,7 +2,7 @@
 
 Hi, I'm Ashley and I'm glad you're here. In this tiny corner of the internet you will find notes on my personal projects, stray thoughts and occasionally interesting insights.
 
-Self-hosting applications is what I am totally sucked into these days. I've started out this journey by setting up a [Pi-hole](https://pi-hole.net/) on an old Raspberry Pi 3B+. I've also built a small home-server recently where I'm experimenting with virtual machines and containers running on [Proxmox VE](https://www.proxmox.com/en/proxmox-ve). More to come as I keep tinkering around in this space. 
+Self-hosting applications is what I am totally sucked into these days. I've started out this journey by setting up a [Pi-hole](setting-up-pi-hole/) on an old Raspberry Pi 3B+. I've also built a small home-server recently where I'm experimenting with virtual machines and containers running on [Proxmox VE](https://www.proxmox.com/en/proxmox-ve). More to come as I keep tinkering around in this space. 
 
 Another activity I'm hoping to better cultivate is setting aside time for quiet contemplation while doing absolutely nothing else. The rate at which we consume our days is rapidly increasing with the pace of modern society and much of our time seems to go by in a blur. So it's always a benefit to sit in silence and allow your mind to indulge its thoughts. Many real insights come from such moments.
 
