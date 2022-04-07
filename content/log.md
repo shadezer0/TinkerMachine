@@ -11,6 +11,7 @@ Status logs to capture what media I'm consuming at the time.
 
 **Reading**
 - Sapiens, A brief history of humankind
+- The Count of Monte Cristo
 
 **Podcasts**
 - Self-Hosted
