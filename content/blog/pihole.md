@@ -1,7 +1,7 @@
 +++
 title = "Setting up Pi-hole"
 date = "2022-04-07"
-tags = ["self-hosting", "technical"]
+tags = ["self-hosting"]
 +++
 
 Pi-hole is a service which allows you to block ads on your entire network. That includes your smart TV where you usually wouldn't be able to install an ad-blocker. This technical wizardry happens because we are essentially running a [DNS sinkhole server](https://en.wikipedia.org/wiki/DNS_sinkhole). Pi-hole can do a couple of other nifty tricks but I'll just be focussing on setting up the ad-blocking capabilities for now. You could also pair this with a VPN (in case you want access from outside your home network) and even run it as your local DHCP server instead of your router.
