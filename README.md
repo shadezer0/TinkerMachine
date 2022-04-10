@@ -1,4 +1,4 @@
-Home of my blog for shadezero.
+Home of my blog for TinkerMachine.
 
 - Hugo to generate static site contents. 
 - Using [this theme](https://github.com/janraasch/hugo-bearblog)
