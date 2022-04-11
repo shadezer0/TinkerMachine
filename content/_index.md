@@ -12,4 +12,4 @@ Writing is a joyful activity that forces me to distill the purest essence of my 
 
 This tiny site is made using [Hugo](https://gohugo.io/) and uses the [hugo-bearblog](https://github.com/janraasch/hugo-bearblog/) theme, which in turn was inspired by the wonderful [ʕ•ᴥ•ʔ Bear Blog](https://bearblog.dev/).
 
-The contents of this blog can be found over at this [GitHub repo](https://github.com/shadezer0/shadezero). The automated build and deploy process is done with the help of [Netlify](https://www.netlify.com/). 
+The contents of this blog can be found over at this [GitHub repo](https://github.com/shadezer0/TinkerMachine). The automated build and deploy process is done with the help of [Netlify](https://www.netlify.com/). 
