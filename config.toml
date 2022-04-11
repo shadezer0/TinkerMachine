@@ -1,6 +1,6 @@
 # Base URL used when generating links to your pages
 # Set to the URL for your site
-baseURL = 'https://tinkermachine.xyz'
+baseURL = 'https://blog.tinkermachine.xyz'
 
 # Name of this theme
 theme = ['hugo-bearblog', 'plausible-hugo']
@@ -54,5 +54,5 @@ ignoreErrors = ["error-disable-taxonomy"]
 
 [params.plausible]
   enable = true  # Whether to enable plausible tracking
-  domain = "tinkermachine.xyz"  # Plausible "domain" name/id in your dashboard
+  domain = "blog.tinkermachine.xyz"  # Plausible "domain" name/id in your dashboard
   proxy_netlify = true
