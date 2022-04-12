@@ -2,7 +2,7 @@
 # Set to the URL for your site
 baseURL = 'https://blog.tinkermachine.xyz'
 
-# Name of this theme
+# hugo-bearblog theme, plausible-hugo for analytics 
 theme = ['hugo-bearblog', 'plausible-hugo']
 
 # Basic metadata configuration for your blog.
@@ -34,7 +34,7 @@ ignoreErrors = ["error-disable-taxonomy"]
   # See https://gohugo.io/templates/internal#twitter-cards and
   # https://gohugo.io/templates/internal#open-graph.
 
-  # images = ["images/share.png"]
+  images = ["images/share.png"]
 
   # Another "title" :-). This one is used as the site_name on the Hugo's internal
   # opengraph structured data template.
