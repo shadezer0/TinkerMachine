@@ -1,6 +1,7 @@
 +++
 title = "Setting up Pi-hole"
 date = "2022-04-07"
+description = "Setting up Pi-hole: a network-wide ad-blocker"
 tags = ["self-hosting"]
 +++
 

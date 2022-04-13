@@ -1,6 +1,7 @@
 +++
 title = "Chew Thought"
 date = "2022-04-09T13:33:28+05:30"
+description = "Revolutionary concept to spend less time glued to our screens"
 tags = ["mindfulness", "digitox"]
 +++
 

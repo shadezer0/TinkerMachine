@@ -1,6 +1,7 @@
 +++
 title = "New Domain"
 date = "2022-04-13T18:00:00+05:30"
+description = "Setting up a new domain for the blog 🎉"
 tags = ["self-hosting","meta"]
 +++
 
