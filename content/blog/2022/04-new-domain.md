@@ -1,42 +1,54 @@
 +++
 title = "New Domain"
-date = "2022-04-12T00:00:00+05:30"
-tags = ["self-hosting",]
-draft = true
+date = "2022-04-13T18:00:00+05:30"
+tags = ["self-hosting","meta"]
 +++
 
-My blog finally has a name🎉 TinkerMachine might seem like an average name to you but believe it or not, it was the result of many hours of toil. Some names were not catchy enough. Others were already taken on Google. Some sounded great but just didn't have the meaning I was looking for. Some were perfect till I just didn't like them anymore after a bit of time. TinkerMachine finally gave me a sense of peace so that I could finally rest instead of thinking up different names even during the family dinner. 
+My blog finally has a name 🎉. TinkerMachine might seem quite average but believe it or not, it was the result of many hours of toil. Some names were not catchy enough. Others were already taken after a quick Google search. Some sounded great but didn't have the intended meaning. At a certain point, I finally settled on TinkerMachine not because it was the best I could come up with, but realizing that writing content would be a better outlet of my time.
 
-This post will go over how I set up my Netflify site to use a custom 'blog' subdomain and how I set up Cloudflare as my authoritative DNS service.
+This post will go over how I set up my Netflify site to use a custom *blog* subdomain and Cloudflare as the authoritative DNS service.
 
-### Buy the Domain
-My domain registrar of choice was Namecheap simply because I had already registered a domain there previously. The `.xyz` TLDs (Top Level Domains) in particular are quite cheap if you are not looking for something professional like `.com`.
+## Buy the Domain
+My domain registrar (entity that sells you the domain name) of choice was [Namecheap](https://www.namecheap.com/) simply because I had already registered a domain there previously. Domains on the *.xyz* TLDs in particular are quite cheap if you are not looking for something professional like *.com*. 
 
-### Cloudflare DNS
-While adding the site on Cloudflare, one nifty feature is that it automatically scans and adds the DNS records. Make sure the required A record and the CNAME record are created. Once this is done, all you have to do is add the 2 nameservers that Cloudflare provides under the custom nameservers section on Namecheap.
+The [MDN Web Docs page on TLD](https://developer.mozilla.org/en-US/docs/Glossary/TLD) explains the various terminologies succintly.
+> Consider an example Internet address: https://developer.mozilla.org Here org is the **TLD**; mozilla.org is the **second-level domain name**; and developer is a **subdomain name**. All together, these constitute a **fully-qualified domain name**; the addition of https:// makes this a **complete URL**. 
+
+I will be referring to the second-level domain name as the main/root domain name (or even just domain) which is *tinkermachine.xyz* in my case. These are the names that we purchase from domain registrars and the memorable part of the website URL. 
+
+## Cloudflare DNS
+After buying the domain, the next step is to add the domain on Cloudflare in order to [manage the DNS functionality](https://developers.cloudflare.com/fundamentals/get-started/basic-tasks/manage-domains/).
+
+One nifty feature is the automatic scanning and addition of the DNS records for the domain. Make sure the required A record and the CNAME record are created in the process.  
 
 Simply put,  
 *A record*: A name that points to an IPv4 address  
-*CNAME record*: An alias of another name.
+*CNAME record*: An alternate name for a domain.
 
-There are a lot more DNS records but these seem to be the absolute necessary ones to focus on while starting out.
+There are many more [DNS records](https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/) but these seem to be the absolute necessary ones to focus on while starting out.
 
-### Netlify Custom Domain
-On the Netlify dashboard, all you'd need to do is to navigate to *Site Settings*, then *Domain Management* and add an entry under *Custom Domains*. Netlify will prompt to add a CNAME record on our DNS records host.
+Once done, all you have to do is [add the Cloudflare nameservers](https://developers.cloudflare.com/dns/zone-setups/full-setup/setup/) under the *Nameservers* section on Namecheap. Make sure to set it to *Custom DNS* first.
+
+## Add Custom Domain on Netlify
+On the Netlify dashboard, navigate to *Site Settings*, then *Domain Management* and add an entry under *Custom Domains*. Netlify will now prompt with the required CNAME record we would need to add on our DNS service which is Cloudflare in my case.
+
+Netlify also provides it's own [DNS management service](https://docs.netlify.com/domains-https/netlify-dns/) in case you want to manage all the details of the site in one place.  
 
 **Note**  
-Make sure to change the baseURL for the blog in the Hugo `config.toml` file. This would ensure that the links for the blog don't break. 
+Make sure to change the *baseURL* setting for the blog in the Hugo `config.toml` file to ensure the links for the blog don't break. 
 
-### Blog subdomain
-Setting up the `blog` subdomain was slightly tricker but <cite>Cloudflare Docs[^1]</cite> helped out quite a bit. Essentially I am hosting the blog on the blog subdomain of the root domain which is tinkermachine.xyz. Now the tricky bit was to redirect the root domain to the subdomain so that it wouldn't have an ugly error if someone visited the link. This was done through the Bulk Redirects functionality on Cloudflare.
+## Subdomain setup on Cloudflare
+This site is hosted on the *blog* subdomain of the main/root domain which is *tinkermachine.xyz*. This can be easily done by adding a CNAME record which Netlify helpfully suggests from the earlier section.
 
-Here is fantastic comic by [Julia Evans](https://jvns.ca) explaining the basic inner workings of a DNS query.
-![dns query comic](https://wizardzines.com/comics/life-of-a-dns-query/life-of-a-dns-query.png)
+It would look something like this:  
+`CNAME  blog  tinkermachine.netlify.app`
 
-[^1]: [Redirect root domain to a subdomain](https://developers.cloudflare.com/fundamentals/get-started/basic-tasks/manage-subdomains/#redirect-root-domain-to-a-subdomain). 
+where *tinkermachine.netlify.app* is the internal, Netlify generated URL for the blog based on the name I provided for the site.
 
-### References
-- [Set up DNS records for your domain in Cloudflare](https://www.namecheap.com/support/knowledgebase/article.aspx/9607/2210/how-to-set-up-dns-records-for-your-domain-in-cloudflare-account/)
-- [DNS Record Types](https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/)
-- [Redirect root domain to a subdomain](https://developers.cloudflare.com/fundamentals/get-started/basic-tasks/manage-subdomains/#redirect-root-domain-to-a-subdomain)
-- [DNS query comic](https://wizardzines.com/comics/life-of-a-dns-query/) by Julia Evans. Definitely check out her other comics at https://wizardzines.com
+The tricky bit was to find how to [redirect the root domain to the subdomain](https://developers.cloudflare.com/fundamentals/get-started/basic-tasks/manage-subdomains/#redirect-root-domain-to-a-subdomain) so that it wouldn't show an ugly error if someone might visit it. 
+
+This was done through the [Bulk Redirects](https://developers.cloudflare.com/rules/bulk-redirects/concepts/) functionality on Cloudflare. Here, we set up a rule so that any traffic to the source URL *tinkermachine.xyz*  would be redirected (via an HTTP 301) to the target URL *https://blog.tinkermachine.xyz*.
+
+## Links
+- [Overview on domains](https://moz.com/learn/seo/domain)
+- [How to set up DNS records for your domain in Cloudflare account](https://www.namecheap.com/support/knowledgebase/article.aspx/9607/2210/how-to-set-up-dns-records-for-your-domain-in-cloudflare-account/)
