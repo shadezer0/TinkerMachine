@@ -108,7 +108,7 @@ sed -e '/pihole updateGravity/ s/^#*/#/' -i /etc/cron.d/pihole
 
 - Now that you've got Pi-hole running successfully, don't forget to configure your router's DHCP to use the Pi as the DNS server for all clients. Another alternative would be to manually change the DNS server on individual devices.
 
-### Issues
+### Possible Issues
 
 - In case of an issue with the DNS, check the `/etc/resolv.conf` file and check if the nameserver is 127.0.0.1 (localhost). If it isn't that, create a `resolv.conf` file on the Pi host with the correct entries and mount that as a volume to `/etc` on the container.
 - In case the adlists are not updating on the web UI, manually run `pihole-updatelists` on the pihole container shell.
