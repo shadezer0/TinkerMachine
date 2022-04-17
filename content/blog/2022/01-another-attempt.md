@@ -2,7 +2,7 @@
 title = "An attempt that sticks"
 date = "2022-04-05"
 description = "Trying to write consistently starting with the first post."
-tags = ["beginnings"]
+tags = ["beginnings", "non-technical"]
 +++
 
 I've always wanted to start writing a blog but that's where it ended as well. The ever-increasing ways to put your content out there paralyzes you from making any real headway into actually writing posts and sharing them. 
