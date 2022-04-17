@@ -56,3 +56,4 @@ ignoreErrors = ["error-disable-taxonomy"]
   enable = true  # Whether to enable plausible tracking
   domain = "blog.tinkermachine.xyz"  # Plausible "domain" name/id in your dashboard
   proxy_netlify = true
+  gitstar = false
