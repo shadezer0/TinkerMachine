@@ -1,7 +1,7 @@
 +++
 title = "Research Burnout"
 date = "2022-04-17T10:58:01+05:30"
-tags = ["mindfulness", "non-techincal"]
+tags = ["mindfulness", "non-technical"]
 description = "Perils of delving into research for a project without any completion criteria"
 +++
 
