@@ -107,8 +107,8 @@ a:hover {
 
 ul {
     padding-left: 1.4em;
-    margin-top: 0px;
-    margin-bottom: 2.5rem;
+    margin-top: 10px;
+    margin-bottom: 3rem;
 }
 
 li {
@@ -193,6 +193,11 @@ ul.blog-posts li a:visited {
     color: #587b98;
 }
 
+ul.blog-posts li {
+    display: flex;
+}
+
 ul.blog-posts li span {
-    flex: 0 0 145px;
+    flex: 0 0 135px;
+    padding-right: 20px;
 }
