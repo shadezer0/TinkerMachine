@@ -192,3 +192,7 @@ ul.blog-posts {
 ul.blog-posts li a:visited {
     color: #587b98;
 }
+
+ul.blog-posts li span {
+    flex: 0 0 145px;
+}
