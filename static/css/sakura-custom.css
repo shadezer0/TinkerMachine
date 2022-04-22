@@ -13,7 +13,7 @@ html {
 }
 
 body {
-    font-size: 1.8rem;
+    font-size: 2rem;
     line-height: 1.618;
     max-width: 38em;
     margin: auto;
@@ -187,10 +187,6 @@ nav a {
 
 ul.blog-posts {
     padding-top: 20px;
-}
-
-ul.blog-posts li span {
-    flex: 0 0 150px;
 }
 
 ul.blog-posts li a:visited {
