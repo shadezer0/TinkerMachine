@@ -196,3 +196,7 @@ ul.blog-posts li a:visited {
 ul.blog-posts li span {
     flex: 0 0 8em;
 }
+
+pre code {
+    font-size: 18px;
+}
