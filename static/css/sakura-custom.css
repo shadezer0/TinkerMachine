@@ -122,9 +122,9 @@ blockquote {
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     padding-right: 0.8em;
-    border-left: 5px solid #eb99a1;
+    border-left: 5px solid #83BD75;
     margin-bottom: 2.5rem;
-    background-color: #40363a;
+    background-color: #3f4a3c;
 }
 
 blockquote p {
@@ -140,7 +140,7 @@ img {
 
 /* Pre and Code */
 pre {
-    background-color: #40363a;
+    background-color: #343425;
     display: block;
     padding: 1em;
     overflow-x: auto;
