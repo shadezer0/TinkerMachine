@@ -67,14 +67,18 @@ Automated login attempts on the internet use common users like pi, admin and roo
 ```bash
 # creates a new user called "myuser"
 useradd myuser
+
 # set password for myuser
 passwd myuser
+
 # disable SSH login through root user
 sudo vim /etc/ssh/sshd_config
 # ...
 # Uncomment and change value to no
  PermitRootLogin no
 # ...
+
+# Reload SSH daemon to pick up changes
 sudo systemctl reload sshd
 ```
 
@@ -88,6 +92,7 @@ By default, SSH traffic happens over 22/tcp. We can reduce a significant number 
 sudo vim /etc/ssh/sshd_config
 # Change this value to the required port
 # Port 1234
+
 sudo systemctl reload sshd
 ```
 Now, we'll need to make some modifications to the firewall rules.
@@ -95,8 +100,10 @@ Now, we'll need to make some modifications to the firewall rules.
 ```bash
 # Delete old rule for standard SSH port
 sudo ufw delete 22/tcp
+
 # Create new rule to allow SSH traffic from new port
 sudo ufw allow 1234/tcp
+
 # Reload ufw to pick up changes
 sudo ufw reload
 ```
@@ -122,8 +129,10 @@ I came across [this guide](https://tailscale.com/kb/1077/secure-server-ubuntu-18
 # Tailscale uses the tailscale0 interface and port 41641 for connections
 sudo ufw allow in on tailscale0
 sudo ufw allow 41641/udp
+
 # We can delete the rule for SSH since the traffic will only be coming over Tailscale
 sudo ufw delete 1234/tcp
+
 # Reload ufw to pick up changes
 sudo ufw reload
 ```
