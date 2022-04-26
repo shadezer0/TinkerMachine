@@ -42,13 +42,17 @@ On Ubuntu, we can use *ufw* (Uncomplicated Firewall) which comes prepackaged on 
 ```bash
 # Create rule to allow only SSH connections
 sudo ufw allow 22/tcp
+
 # Enable ufw if it isn't already
 sudo ufw enable
+
 # Restrict all incoming traffic by default
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
+
 # Reload ufw to pick up changed configuration
 sudo ufw reload
+
 # Check the status
 sudo ufw status
 ```
