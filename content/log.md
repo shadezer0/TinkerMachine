@@ -3,10 +3,6 @@ title = "Log"
 menu = "main"
 +++
 
-# Status Logs
-
-Status logs to capture what media I'm consuming at the time.
-
 ### Apr 5, 2022
 
 **Reading**
