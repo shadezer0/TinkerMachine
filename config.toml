@@ -53,7 +53,6 @@ ignoreErrors = ["error-disable-taxonomy"]
   # dateFormat = "2006-01-02"
 
 [params.plausible]
-  enable = true  # Whether to enable plausible tracking
+  enable = false # Whether to enable plausible tracking
   domain = "blog.tinkermachine.xyz"  # Plausible "domain" name/id in your dashboard
-  proxy_netlify = true
   gitstar = false
