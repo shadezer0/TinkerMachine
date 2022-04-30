@@ -29,14 +29,14 @@ The aim is to lower the surface area of any potential attack as much as possible
 3. Allow traffic only from the Tailscale network.
 
 ### Pre-requisites
-**1. SSH key-based authentication**  
+**SSH key-based authentication**  
 While setting up the DigitalOcean droplet, select SSH key-based authentication instead of a password. This is an essential necessity that prohibits most unwanted access.
 
 More info on setting up SSH keys on Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04
 
 Also ensure in the `/etc/ssh/sshd_config` file the *PasswordAuthentication* directive is set to "no" to disable password based login attempts altogether.
 
-**2. Enable Firewall**  
+**Enable Firewall**  
 On Ubuntu, we can use *ufw* (Uncomplicated Firewall) which comes prepackaged on a default installation. 
 
 ```bash
@@ -59,7 +59,7 @@ sudo ufw status
 
 Make sure that while listing the ufw status, there's no other rules than what's absolutely necessary. Anytime a new port needs to be exposed to the public internet, we will need to explicitly add a new allow rule.
 
-**3. Install Tailscale**  
+**Install Tailscale**  
 Check [this link](https://tailscale.com/kb/1039/install-ubuntu-2004/) to install Tailscale on an Ubuntu server.
 
 ### 1. Change to non-root user
