@@ -132,3 +132,4 @@ Tables aren't part of the core Markdown spec, but Hugo supports supports them ou
 
 ### My Notes
 - Enter two spaces to have the text go to a new line. 
+- `&nbsp;` for blank lines in a markdown document.
