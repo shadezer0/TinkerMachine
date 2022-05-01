@@ -32,7 +32,7 @@ Got your goals ready? These entries would usually be something like "Get a fit a
 This is a critical task - set a **due date** for the goal. This makes sure that we can stay on track and be motivated to complete the goal. Otherwise, we run the risk of endlessly going about on a habit without any targets to achieve and progress to be tracked.
 
 ### Attach habits to goals
-Habits need to be attached to your goals - this keeps you working consistently on them.
+Habits need to be attached to your goals. This is where we make actual progress towards achieving them.
 
 "Start working out atleast twice a week" or "Read 2 books each month". These can even be scoped down to lower time frames like "Read 2 chapters a day". The important thing is to spend some time and find the habit and frequency that would work for you. Make sure that the habits are realistic and offer meaningful progress without feeling burnt out.
 
