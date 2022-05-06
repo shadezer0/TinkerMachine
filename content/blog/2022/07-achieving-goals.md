@@ -7,13 +7,11 @@ description = "Setting and getting your goals"
 
 My weekdays usually go by in a blur due to a hectic day job as a DevOps engineer. Most of the tasks I was doing were assigned to me by someone else, not something that I was setting for myself and checking off. Without consistently asking myself what *my* goals are and working on them, it's easy to get lost in a cycle of fake busyness. 
 
-I like what <cite>James Clear has to say about productivity[^1]</cite>. 
+I like what James Clear has to [say about productivity](https://jamesclear.com/productivity). 
 
 > Productivity is getting important things done consistently. And no matter what you are working on, there are only a few things that are truly important.
 >  
 > Being productive is about maintaining a steady, average speed on a few things, not maximum speed on everything. 
-
-[^1]: James's productivity guide - https://jamesclear.com/productivity
 
 In that vein, I'm setting up my goal achievement system consisting of a 4 step process.
 
