@@ -3,7 +3,6 @@ title = "Naval's Almanack"
 date = "2022-05-21T11:49:40+05:30"
 tags = ["mindfulness","non-technical"]
 description = "Some thoughts while re-reading the The Almanack of Naval Ravikant"
-draft = true
 +++
 
 One of the most insightful books I've read (and I'm re-reading right now) is Eric Jorgenson's "The Almanack of Naval Ravikant". It's not written in the vein of self help books but a collection of snippets from his experiences and thought process. There's no advising along the lines of "you should do x and y to be 300% faster" but more like "here's what's worked extremely well for me; think about it and see if it works for you".
