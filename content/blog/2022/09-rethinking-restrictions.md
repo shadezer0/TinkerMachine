@@ -1,6 +1,6 @@
 +++
 title = "Why Restrictions Aren't So Bad"
-date = "2022-06-11T12:27:04+05:30"
+date = "2022-06-12T15:10:00+05:30"
 tags = ["non-technical"]
 description = "Rethinking the way we see restrictions and challenges in our life"
 +++
