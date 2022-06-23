@@ -1,0 +1,15 @@
+{
+    auto_https off
+}
+
+tinkermachine.xyz {
+        # Set this path to your site's directory.
+        root * /usr/share/caddy
+
+        # Enable the static file server.
+        file_server
+}
+
+webhook.tinkermachine.xyz {
+        reverse_proxy localhost:5000
+}

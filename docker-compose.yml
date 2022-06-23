@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  caddy_server:
+    build: .
+    container_name: hugo_blog
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
