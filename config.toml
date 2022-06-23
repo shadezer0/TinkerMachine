@@ -1,6 +1,6 @@
 # Base URL used when generating links to your pages
 # Set to the URL for your site
-baseURL = 'https://blog.tinkermachine.xyz'
+baseURL = 'https://tinkermachine.xyz'
 
 # hugo-bearblog theme, plausible-hugo for analytics 
 theme = ['hugo-bearblog']
