@@ -6,7 +6,6 @@ menu = "main"
 # About Me
 
 Hi, I'm Ashley. I'm still looking to update this page.
-TEST
 
 In the meantime, here are some places you can find me:  
 - Website (you are here!): https://tinkermachine.xyz/  
