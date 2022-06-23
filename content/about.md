@@ -5,7 +5,7 @@ menu = "main"
 
 # About Me
 
-Hi, I'm Ashley James.
+Hi, I'm Ashley James. Nice to meet you.
 
 Here are some places you can find me:  
 - Website (you are here!): https://tinkermachine.xyz/  
