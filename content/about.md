@@ -5,7 +5,7 @@ menu = "main"
 
 # About Me
 
-Hi, I'm Ashley. I'm looking to update this page in the near future.
+Hey, I'm Ashley. I'm looking to update this page in the near future.
 
 In the meantime, here are some places you can find me:  
 
