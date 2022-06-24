@@ -6,7 +6,7 @@ menu = "main"
 ### Apr 5, 2022
 
 **Reading**
-- Sapiens, A brief history of humankind
+- Sapiens, A Brief History of Humankind
 - The Count of Monte Cristo
 
 **Podcasts**
