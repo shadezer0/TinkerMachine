@@ -3,6 +3,9 @@ title = "Log"
 menu = "main"
 +++
 
+# Log 
+Occasionally updated insight into what I'm consuming at the moment.
+
 ### Apr 5, 2022
 
 **Reading**
