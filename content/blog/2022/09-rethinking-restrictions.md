@@ -34,7 +34,6 @@ In the Count of Monte Cristo by Alexandre Dumas, there's a thought-provoking con
 Dantes, after basking in Faria's intelligence and creative work on entering the latter's chamber, poses a question on the possible achievements Faria could have attained if he were free. Here is Faria's response:
 
 > "Possibly nothing at all; the overflow of my brain would probably, in a state of freedom, have evaporated in a thousand follies; misfortune is needed to bring to light the treasures of the human intellect. Compression is needed to explode gunpowder. Captivity has brought my mental faculties to a focus; and you are well aware that from the from the collision of clouds electricity is produced - from electricity, lightning, from lightning, illumination."
-> - Ch 17 - The Abbé's Chambers, Pg 142
 
 ## Actionable Takeaways
 Embrace the challenges and difficulties of life and endeavour to find creative solutions which hone your skills and nourish your experiences. Place useful restrictions in situations where there's an abundance of choice preventing you from making real progress.
