@@ -19,7 +19,7 @@ Some big takeaways I'm getting over the multiple times I've gone through this bo
 > Desire is a contract you make with yourself to be unhappy until you get what you want.
 
 ### Exercise
-- Naval talks about exercise as the "the habit that most positively impacts his life". I've only managed to have an inconsistent exercise routine over the years and never at a stage where I could see growth. The occasional run and a couple of push-ups here and there. 
+- Naval talks about exercise as "the habit that most positively impacts his life". I've only managed to have an inconsistent exercise routine over the years and never at a stage where I could see growth. The occasional run and a couple of push-ups here and there. 
 
 - The daily morning workout is something I'm deeply considering to do. The fact that it's taking place in the morning means:
   1. I get to do it first thing after waking up giving me a rush of energy and positive thoughts for the rest of the day.
