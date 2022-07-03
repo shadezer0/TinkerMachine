@@ -2,7 +2,7 @@
 # Set to the URL for your site
 baseURL = 'https://tinkermachine.xyz'
 
-# hugo-bearblog theme, plausible-hugo for analytics 
+# hugo-bearblog theme
 theme = ['hugo-bearblog']
 
 # Basic metadata configuration for your blog.
