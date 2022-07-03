@@ -1,0 +1,21 @@
+body {
+    font-size: 1.2rem;
+}
+
+nav a {
+    margin-right: 12px;
+}
+
+ul.blog-posts {
+    padding-top: 20px;
+}
+
+ul.blog-posts li span {
+    flex: 0 0 7.5em;
+}
+
+/* li span i time {
+    width: 128px;
+    max-width: 128px;
+    display: inline-block;
+} */
