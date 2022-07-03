@@ -6,26 +6,45 @@ description = "How I switched over from using Netlify to build and deploy my per
 draft = true
 +++
 
-This post details my journey migrating the TinkerMachine blog from using Netlify to build and serve the contents to using a DigitalOcean droplet VPS running Caddy. Similar to the older setup, any change made to GitHub now triggers a webhook server running on this VPS and executes a bash script that runs hugo to generate the static files which then gets served with Caddy.
+This post details my journey migrating the TinkerMachine blog from using Netlify to build and serve the site contents to a self-hosted DigitalOcean droplet VPS. Similar to the older setup, any changes to be made are done through commits on GitHub that trigger a webhook and subsequently updates the static files on the remote server. 
 
-This post was a huge endeavour spanning a couple of long weeks. I was nearing the stages of burnout at the later parts of setting this up. I had to pick up a lot of skills, overcome a lot of edge case issues (mostly by following helpful guides by other folks who were kind enough to share their learning with the world). 
+The learning and documentation here is the result of a monumental effort spanning a couple of weeks. Between working on the weekends and trying to fix obscure issues, I'm happy to say that the initial effort to serve the blog from my own server is finally complete. I'm also extremely grateful to the numerous people who were kind enough to share their own discoveries through blog posts which helped me in my setup. I'm hoping that this post also helps some future reader in their own journey. 
 
-Previous Blog Setup
-All the contents of the blog sits in GitHub. After any change was done through a commit, Netlify takes care of it from there. It goes through the build process where the static files are generated with Hugo and then performs a deployment. All I had to do was make the relevant entries in the DNS entries for the blog so that it pointed to the Netlify deployed site.
+## Previous Setup
+All contents of the blog sit in a GitHub repository. Any changes are pushed via commits that trigger a new build on Netlify which then takes care of deploying the site as well. The only thing I had to worry about was to ensure the DNS records were pointing the domain name to the Netlify site which hosted the blog.
 
-Idea for New Setup
-Blog contents are still at GitHub. I could just directly make the changes on my local machine and copy the newly generated files from Hugo through rsync or winscp. But I wanted to go through the same process and have all the blog contents available on GitHub. I also wanted to learn more about the process of how a webhook works. This lead me down the path you see below.
+This setup is very easy to setup and highly recommended in the early stages of your blog writing process. This is because it's important to focus more on the writing than the architecture of the blog deployment. I moved away from Netlify solely because I wanted to have a personal project to learn and practice new concepts. This included getting my hands dirty with a webserver and playing around with sending and receiving webhooks.
+
+## Initial Idea for a self-hosted Setup
+An easy way to implement a self-hosted blog would be:
+
+Make change locally -> Run hugo to generate static files -> Copy static files through rsync/winscp to the remote serve -> Serve files with webserver
+
+But I wanted to keep the existing workflow as much as possible. This meant pushing the changes via commits on GitHub which would trigger the build and deploy process. This would keep all changes tracked through a version control system. Even in this scenario, another easy shortcut would be to run the copy command after each commit as an independent step. This could be automated as well through the use of an alias to push the change to GitHub, generate the static files and copy the resulting folder to the remote server. But this didn't feel right to me as well
+
+There were 2 possible approaches I could take:
+1.  After the commit, run GitHub Actions to get blog contents after hugo build and copy the results to the remote server.
+2.  After the commit, GitHub sends a payload to an HTTP endpoint which then runs a bash script to do the build process.
+
+I didn't want to do method #1 since I would also need to set up Tailscale on the temporary Ubuntu VM that spins up not to mention setting up the SSH keys and having SSH happen over a non-standard SSH port.
+
+So I went ahead with method #2.
 
 Serve blog using Caddy. Webhook server listens for trigger from GitHub after commit. Once triggered, it runs a bash script. This script pulls the latest changes from the GH repository and then runs the hugo command to generate the updated static files. Caddy then serves these new updated files.
 
-Main subtopics:
-- Initial attempt to dockerize everything
+## Failure with Containerizing Everything
+TODO: Do I need to write about initial docker attempts?
 
+## Main tools being Used
+- Caddy -- webserver of choice
+- Webhook (Name of the app is the same as functionality it's providing. Gets confusing fast)
+- CloudFlare DNS -- Any DNS managing service works. I just happen to use CloudFlare
+
+### OS Setup
 Setting up the user
 - Create a new user which would be running the webserver and the webhook. 
 - Create a location where caddy serves the files ~/deploy/tinkermachine.xyz/public
 - When running hugo command, it takes the markdown and other config and generates the HTML/CSS output according to the theme I've setup.
-
 
 ### Caddy
 Initially caddy did come built-in with a git module but this was done away with for v2 unless you want to build a custom binary using xcaddy and a third party module for git in order to respond to a webhook. This is now done through the use of another service named "Webhook"
@@ -37,6 +56,10 @@ Initially caddy did come built-in with a git module but this was done away with 
 - 
 
 ### Webhook
+Definition from GH repo:
+
+> webhook is a lightweight configurable tool written in Go, that allows you to easily create HTTP endpoints (hooks) on your server, which you can use to execute configured commands. You can also pass data from the HTTP request (such as headers, payload or query variables) to your commands. webhook also allows you to specify rules which have to be satisfied in order for the hook to be triggered.
+
 Listens at a particular URL endpoint and port that we specify for webhooks. In order to not use the IP address, we can add the webhook URL into the Caddyfile as well to expose it through Caddy's reverse proxy directive.
 
 - https://github.com/adnanh/webhook
