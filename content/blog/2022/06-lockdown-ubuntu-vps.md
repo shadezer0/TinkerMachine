@@ -18,11 +18,11 @@ After thinking about it for a bit, I also wanted to keep my internet traffic pri
 
 After provisioning a new droplet, security is of the highest importance since this server is exposed to the world unlike your LAN network which sits behind router firewall and also implements a [NAT](https://www.wikiwand.com/en/Network_address_translation).
 
-The measures provided here were inspired after a quick glance into all the failed login attempts (check /var/log/auth.log) to the newly created server in just a couple of hours. 
+The measures provided here were inspired after a quick glance into all the failed login attempts (check `/var/log/auth.log`) to the newly created server in just a couple of hours. 
 
 To be honest, implementing authenticaion through SSH keys alone would secure the server to a reasonable extent. A lot of this was motivated by experimentation and learning the various ways by which we can prevent unwanted access. 
 
-The aim is to lower the surface area of any potential attack as much as possible. Therefore, all these methods are not absolutely required and incorporating just one of them significantly reduces the chances of a malicious actor gaining access.
+The aim is to lower the surface area of any potential attack as much as possible. Therefore, all these methods are not absolutely required and incorporating one significantly reduces the chances of a malicious actor gaining access.
 
 1. Change from default root user.
 2. Change SSH port.
