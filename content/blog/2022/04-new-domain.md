@@ -53,3 +53,9 @@ This was done through the [Bulk Redirects](https://developers.cloudflare.com/rul
 ## Links
 - [Overview on domains](https://moz.com/learn/seo/domain)
 - [How to set up DNS records for your domain in Cloudflare account](https://www.namecheap.com/support/knowledgebase/article.aspx/9607/2210/how-to-set-up-dns-records-for-your-domain-in-cloudflare-account/)
+
+
+&nbsp;
+
+**Update**:   
+The main domain name (tinkermachine.xyz) is now being used instead of the blog subdomain (blog.tinkermachine.xyz). I've also configured Caddy to redirect the blog subdomain to the main one so as to not break older URLs.
