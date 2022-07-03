@@ -3,7 +3,7 @@
  * Minimal css theme.
  * Project: https://github.com/oxalorg/sakura/
  * Refer: https://unpkg.com/sakura.css@1.3.1/css/sakura-vader.css, https://www.cssbed.com/sakura-vader/
- * Colour palatte: https://mycolor.space/?hex=%2383BD75&sub=1
+ * Colour palette: https://mycolor.space/?hex=%2383BD75&sub=1
  * Inspiration: https://hanki.dev/new-blog-design/
  */
 /* Body */
@@ -13,7 +13,7 @@ html {
 }
 
 body {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 1.618;
     max-width: 38em;
     color: #d9d8dc;
@@ -23,13 +23,13 @@ body {
 
 @media (max-width: 684px) {
     body {
-        font-size: 1.8rem;
+        font-size: 1.53rem;
     }
 }
 
 @media (max-width: 382px) {
     body {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
     }
 }
 
