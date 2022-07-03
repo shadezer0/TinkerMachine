@@ -51,8 +51,6 @@ Personally, I'm beginning a weekly review practice where each Saturday morning, 
 ### Takeaway
 This system certainly has areas for refinement, but I'm quite happy with the overall structure that it offers. The important bit is to not blindly start working but to apply some thought into figuring out where you want to direct your energy. The optimizing, scheduling and progress introspection come later when you've got your main goals locked in place.
 
-&nbsp;
-
-#### Reads that inspired this post
+### Reads that inspired this post
 - https://jamesclear.com/productivity-tip
 - https://jamesclear.com/saying-no
