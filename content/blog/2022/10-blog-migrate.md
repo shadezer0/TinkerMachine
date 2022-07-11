@@ -1,26 +1,26 @@
 +++
-title = "Self Hosting My Blog"
+title = "Running my Blog on a VPS"
 date = "2022-07-06T18:00:00+05:30"
 tags = ["meta","self-hosting",]
-description = "How I moved away from using Netlify to build and deploy my blog"
+description = "A post on reworking the build and deploy process for my blog. The blog currently runs on a DigitalOcean droplet and picks up changes from GitHub."
 draft = true
 +++
 
-This post details my journey migrating the TinkerMachine blog from using Netlify to build and serve the site contents to doing the same thing from a  DigitalOcean VPS.
+This post details my journey migrating the TinkerMachine blog from using [Netlify](https://www.netlify.com/) to build and serve the site contents to doing the same thing from a 5$ (now hiked to 6$) [DigitalOcean](https://www.digitalocean.com/) VPS.
 
 Just so that it's absolutely clear - Netlify is a wonderfully easy and effective way to get started with your blog on GitHub. I'm trying to do the heavy lifting here with my own cloud server as a personal project to learn more about the steps involved with hosting your own site.
 
 I'm extremely grateful to the numerous people on the internet who were kind enough to share their own discoveries through blog posts which helped me in my setup. I'm hoping that this post also helps some future reader in their own journey. 
 
 ## Previous Setup
-All contents of the blog sit in a GitHub repository. Any changes are pushed via commits that trigger a new build on Netlify which then takes care of deploying the site as well. The only thing I had to worry about was to maintain the DNS records pointing the domain name to the Netlify site which hosted the blog.
+All contents of the blog sit in a [GitHub repository](https://github.com/shadezer0/TinkerMachine). Any changes are pushed via commits that trigger a new build on Netlify which then takes care of deploying the site as well. The only thing I had to worry about was to maintain the DNS records pointing the domain name to the Netlify site which hosted the blog.
 
 This is very easy to setup and highly recommended in the early stages of the blog writing process. Start with focussing more on the writing than the implementation details around the blog.
 
 ## Idea for a Self-Hosted Setup
 An easy way to implement a self-hosted blog would be:
 
-Make change locally -> Use hugo to generate static files -> Copy static files through rsync/winscp to the remote server -> Serve files with webserver
+Make change locally -> Use hugo to generate static files -> Copy static files through rsync/winscp to the remote server -> Serve files with web server
 
 In my case, I wanted to keep the existing workflow as much as possible. This meant pushing the changes via commits to GitHub that would trigger the build and deploy process. In this manner, all changes could be tracked through a version control system. But even in this scenario, you could possibly run hugo and copy over the static files after each commit. But I wanted a more automated and elegant approach that performs the build and serves the files seamlessly after each commit.
 
@@ -192,7 +192,7 @@ $ cat /var/scripts/redeploy.sh
 #!/bin/bash
 # pull changes and favour remote in case of merge conflicts
 git pull -s recursive -X theirs
-# run hugo through a docker container for fun. Use the binary if present on the machine
+# run hugo through a docker container for fun. Use the binary otherwise
 docker run --rm -v $(pwd):/src klakegg/hugo:0.93.2
 # [optional] send output to a log file for debugging
 echo Received request on $(date) >> /home/bloguser/deploy/log
