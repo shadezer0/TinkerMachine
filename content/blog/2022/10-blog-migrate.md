@@ -5,9 +5,9 @@ tags = ["meta","self-hosting",]
 description = "Reworking the build and deploy process for my blog as a learning project. The blog currently runs on a DigitalOcean droplet and picks up changes from GitHub."
 +++
 
-This post details my journey migrating the TinkerMachine blog from using [Netlify](https://www.netlify.com/) to build and serve the site contents to doing the same thing from a 5$ (<cite>now hiked to 6$[^1]</cite>) [DigitalOcean](https://www.digitalocean.com/) droplet.
+This post details my journey migrating the TinkerMachine blog from using [Netlify](https://www.netlify.com/) to build and serve the site contents to doing the same thing from a $5 (<cite>now hiked to $6[^1]</cite>) [DigitalOcean](https://www.digitalocean.com/) droplet.
 
-[^1]: It's extremely unfortunate that DigitalOcean has [bumped up their prices](https://www.digitalocean.com/try/new-pricing) and there doesn't seem to be a straight-forward way [to downsize](https://docs.digitalocean.com/products/droplets/concepts/downsizing-considerations/) to their 4$ droplet. Certainly a perfect excuse to get some practical knowledge writing an Ansible playbook.
+[^1]: It's extremely unfortunate that DigitalOcean has [bumped up their prices](https://www.digitalocean.com/try/new-pricing) and there doesn't seem to be a straight-forward way [to downsize](https://docs.digitalocean.com/products/droplets/concepts/downsizing-considerations/) to their $4 droplet. Certainly a perfect excuse to get some practical knowledge writing an Ansible playbook.
 
 Just so that it's absolutely clear - Netlify is a wonderfully easy and effective way to get started with your blog on GitHub. I'm trying to do the heavy lifting here, setting it all up on my own cloud server as a project to learn more about the steps involved with hosting your own site.
 
