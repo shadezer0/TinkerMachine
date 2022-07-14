@@ -1,49 +1,48 @@
 +++
-title = "Running my Blog on a VPS"
-date = "2022-07-06T18:00:00+05:30"
+title = "Moving the Blog to a Cloud Server"
+date = "2022-07-14T22:15:00+05:30"
 tags = ["meta","self-hosting",]
-description = "A post on reworking the build and deploy process for my blog. The blog currently runs on a DigitalOcean droplet and picks up changes from GitHub."
-draft = true
+description = "Reworking the build and deploy process for my blog as a learning project. The blog currently runs on a DigitalOcean droplet and picks up changes from GitHub."
 +++
 
-This post details my journey migrating the TinkerMachine blog from using [Netlify](https://www.netlify.com/) to build and serve the site contents to doing the same thing from a 5$ (now hiked to 6$) [DigitalOcean](https://www.digitalocean.com/) VPS.
+This post details my journey migrating the TinkerMachine blog from using [Netlify](https://www.netlify.com/) to build and serve the site contents to doing the same thing from a 5$ (<cite>now hiked to 6$[^1]</cite>) [DigitalOcean](https://www.digitalocean.com/) droplet.
 
-Just so that it's absolutely clear - Netlify is a wonderfully easy and effective way to get started with your blog on GitHub. I'm trying to do the heavy lifting here with my own cloud server as a personal project to learn more about the steps involved with hosting your own site.
+[^1]: It's extremely unfortunate that DigitalOcean has [bumped up their prices](https://www.digitalocean.com/try/new-pricing) and there doesn't seem to be a straight-forward way [to downsize](https://docs.digitalocean.com/products/droplets/concepts/downsizing-considerations/) to their 4$ droplet. Certainly a perfect excuse to get some practical knowledge writing an Ansible playbook.
 
-I'm extremely grateful to the numerous people on the internet who were kind enough to share their own discoveries through blog posts which helped me in my setup. I'm hoping that this post also helps some future reader in their own journey. 
+Just so that it's absolutely clear - Netlify is a wonderfully easy and effective way to get started with your blog on GitHub. I'm trying to do the heavy lifting here, setting it all up on my own cloud server as a project to learn more about the steps involved with hosting your own site.
 
-## Previous Setup
-All contents of the blog sit in a [GitHub repository](https://github.com/shadezer0/TinkerMachine). Any changes are pushed via commits that trigger a new build on Netlify which then takes care of deploying the site as well. The only thing I had to worry about was to maintain the DNS records pointing the domain name to the Netlify site which hosted the blog.
+I'm also extremely grateful to the numerous people on the internet who were kind enough to share their own discoveries through blog posts which helped me in my setup. I'm hoping that this post also helps some future reader in their own journey.
+
+## Old Setup
+All contents of the blog sit in a [GitHub repository](https://github.com/shadezer0/TinkerMachine). Any changes are pushed via commits that trigger a new build on Netlify which then takes care of deploying the site as well. I only had to worry about maintaining the DNS records pointing the domain name to the Netlify created site which hosted the blog.
 
 This is very easy to setup and highly recommended in the early stages of the blog writing process. Start with focussing more on the writing than the implementation details around the blog.
 
-## Idea for a Self-Hosted Setup
-An easy way to implement a self-hosted blog would be:
+## Ideas for the New Setup
+An easy way to implement a self-hosted blog on a remote server would be:
 
-Make change locally -> Use hugo to generate static files -> Copy static files through rsync/winscp to the remote server -> Serve files with web server
+Make change locally -> Use hugo to generate static files -> Copy static files using rsync/winscp to the remote server -> Serve files with web server
 
 In my case, I wanted to keep the existing workflow as much as possible. This meant pushing the changes via commits to GitHub that would trigger the build and deploy process. In this manner, all changes could be tracked through a version control system. But even in this scenario, you could possibly run hugo and copy over the static files after each commit. But I wanted a more automated and elegant approach that performs the build and serves the files seamlessly after each commit.
 
-There were 2 possible approaches:
+These were 2 possible approaches I came up with:
 1. After a commit, run a workflow through GitHub Actions to pick up the latest repo contents, use hugo to generate the static files and copy these over to my remote server using rsync.
 2. After a commit, GitHub sends a payload to a URL which triggers a webhook on the remote server that runs a bash script to do the build process.
 
-I didn't want to do method #1 since I would also need to set up Tailscale through an auth key on the temporary Ubuntu VM used by GitHub Actions. This is because I've set up the remote server to only be accessed from another device on my Tailscale network. There would also be the hassle of setting up the SSH keys and configuring SSH to happen over a non-standard SSH port.
+I was hesitant to go with method #1 since that would mean configuring SSH keys, non-standard SSH ports and Tailscale auth keys on the temporary Ubuntu VM used by GitHub Actions. Since I didn't have too much experience writing the YAML files for GitHub Actions, I decided to go with method #2.
 
-So I went ahead with method #2.
+Serve blog using Caddy. Webhook on the VPS listens for a POST request from GitHub on a specified HTTP (or HTTPS) endpoint after a commit. Once triggered, a bash script is executed. This script pulls the latest changes from the repository and then runs the hugo command to generate the static files with all the changes. Caddy then serves these updated files.
 
-Serve blog using Caddy. Webhook server listens for POST request from GitHub on a specified HTTP (or HTTPS) endpoint after a commit. Once triggered, it runs a bash script. This script pulls the latest changes from the GH repository and then runs the hugo command to generate the updated static files. Caddy then serves these new updated files.
+While working on these changes, I decided to move away from the blog subdomain and use the main `tinkermachine.xyz` domain to serve the blog. This requires some config in Caddy and Cloudflare DNS for redirecting anyone visiting the old `blog.tinkermachine.xyz/post-1` links to the new one with `tinkermachine.xyz/post-1`.
 
-Also, while working on these changes, I decided to move away from the blog subdomain and use the main `tinkermachine.xyz` domain itself to serve the blog. This requires some config in Caddy and Cloudflare DNS for redirecting anyone visiting the old `blog.tinkermachine.xyz/post-1` links to the new one with `tinkermachine.xyz/post-1`.
-
-The major steps were followed from this extremely helpful and detailed blog post which is also thankfully updated for Caddy v2 -- https://tvc-16.science/caddy-2-update.html
+The major steps were picked up from this extremely helpful and detailed blog post which is also thankfully updated for Caddy v2 -- https://tvc-16.science/caddy-2-update.html. I can't stress how useful this post was while setting up my own process.
 
 ## Services Being Used
 - [Caddy](https://caddyserver.com/docs/) -- Web server of choice to serve files and also be used for reverse proxy purposes.
 - [Webhook](https://github.com/adnanh/webhook) (Name of the app is the same as functionality it's providing. Gets confusing fast)
 - [Cloudflare DNS](https://www.cloudflare.com/dns/) -- Replace with whatever DNS managing service you're using.
 
-Note that these services are running on an Ubuntu 20.04.4 LTS server.
+Note that the DigitalOcean droplet is running Ubuntu 20.04.4 LTS.
 
 ### User and Deploy Directory Setup
 
@@ -67,6 +66,9 @@ sudo chown -R bloguser:bloguser /home/bloguser
 sudo cp ~/.ssh /home/bloguser/
 sudo chown -R bloguser:bloguser /home/bloguser/.ssh
 
+# [optional] provide superuser privileges to the user
+sudo usermod -aG sudo bloguser
+
 # switch to the new user
 su - bloguser
 
@@ -86,14 +88,14 @@ git submodule init
 git submodule update
 ```
 
-- Once hugo is run as part of the webhook script, it will create a new directory called `public` where the static HTML/CSS files are created from the markdown files with which the posts are written. This location will be served by Caddy.
+- Once hugo is run as part of the webhook script, it will create a new directory called `public` where the static HTML/CSS files are created from the markdown files with which the posts are written. This is the location that will be served by Caddy.
 
-### Caddy
-Initially, Caddy did come built-in with a git module but this was removed for v2. Now, you would need to build a custom caddy binary using xcaddy and a third party module for git in order to implement a webhook server. 
+### Caddy Setup
+Initially, Caddy v1 did come built-in with a git module but this was removed for v2. Now, you would need to build a custom caddy binary using xcaddy with a third party module for git in order to implement a webhook server. 
 
 I decided to go with another dedicated webhook service written in Go and use Caddy just as a web-server and reverse-proxy.
 
-- Install Caddy using the apt package manager (on Ubuntu/Debian) by following [these steps](https://caddyserver.com/docs/install#debian-ubuntu-raspbian).
+- Install Caddy using the apt package manager (for Ubuntu/Debian) by following [these steps](https://caddyserver.com/docs/install#debian-ubuntu-raspbian).
 
 - Create a Caddyfile with the required configurations. You can find docs on writing a Caddyfile [here](https://caddyserver.com/docs/caddyfile-tutorial). This is how my Caddyfile looks like currently:
 
@@ -126,7 +128,7 @@ webhook.tinkermachine.xyz {
 }
 
 ```
-- There are entries for serving the static contents for the blog, redirecting old links to the blog towards the new one and configuring a reverse proxy to create a route for the endpoint of the webhook.
+- There are entries for serving the static contents for the blog and redirecting old links to the blog towards the new one. In order to avoid using the IP address for the webhook service, we are adding an entry to expose it using a subdomain through Caddy’s reverse proxy directive.
 
 - The certificates for Cloudflare were needed since I was not going to use the built-in HTTPS functionality and Let's Encrypt certificates provided by Caddy. Refer to [this link](https://samjmck.com/en/blog/using-caddy-with-cloudflare/#configuration-with-proxy-enabled) for configuring Caddy to be used with Cloudflare when enabling proxy. I followed the steps which go over using Cloudflare's origin certificate.
 
@@ -138,14 +140,18 @@ webhook.tinkermachine.xyz {
 sudo setcap CAP_NET_BIND_SERVICE=+eip $(which caddy)
 ``` 
 
-### Webhook
-Here's the definition from the GH repo which explains the functionality succinctly:
+### Webhook Setup
+Here's the description of the webhook service from its GitHub repo which explains the functionality succinctly:
 
 > webhook is a lightweight configurable tool written in Go, that allows you to easily create HTTP endpoints (hooks) on your server, which you can use to execute configured commands. You can also pass data from the HTTP request (such as headers, payload or query variables) to your commands. webhook also allows you to specify rules which have to be satisfied in order for the hook to be triggered.
 
-Listens at a particular URL endpoint and port that we specify for webhooks. In order to not use the IP address, we can add the webhook URL into the Caddyfile as well to expose it through Caddy's reverse proxy directive.
+- Install the community packaged version for the Go binary of webhook through the apt package manager for Ubuntu.
 
-- Create a `hooks.json` file that will be used by webhook to create things like which script to execute, what's the endpoint for the route (it uses the configured id) and most importantly, setting trigger rules. We provide a secret as part of these rules so that no-one unauthorized will be able to trigger that script on our server. We will be configuring the GitHub webhook to use the same secret that we provide here. Here is an [example hooks.json file](https://github.com/adnanh/webhook/blob/master/hooks.json.example) which I used as reference.
+```bash
+sudo apt-get install webhook
+```
+
+- Create a `hooks.json` file that will be used by webhook to set up the script to execute, the endpoint for the route (it uses the configured id) and also setting trigger rules (the rules that need to match before the script can run). We provide a secret as part of these rules so that no unauthorized requests will be able to trigger that script on our server. We will be configuring the GitHub webhook to use the same secret that we provide here. You can use [this file](https://github.com/adnanh/webhook/blob/master/hooks.json.example) as reference.
 
 ```bash
 $ cat ~/deploy/hooks.json
@@ -184,7 +190,7 @@ $ cat ~/deploy/hooks.json
 
 ```
 
-- The deploy bash script contains 2 commands: one to run git pull on an already initialized local github repo. It also runs the hugo command to recreate the static files according to the changes. I've optionally added another command to log the timestamp when the webhook server receives a request. Don't forget to check the owner of the script and provide execute permissions to run it.
+- The deploy bash script `redeploy.sh` contains 2 steps - one to pull the latest changes on a local github repo and then to run hugo to recreate the static files according to the changes. I've optionally added another command to log the timestamp when the webhook server receives a request. Don't forget to check the owner of the script and provide execute permissions to run it.
 
 ```bash
 $ cat /var/scripts/redeploy.sh
@@ -192,14 +198,14 @@ $ cat /var/scripts/redeploy.sh
 #!/bin/bash
 # pull changes and favour remote in case of merge conflicts
 git pull -s recursive -X theirs
-# run hugo through a docker container for fun. Use the binary otherwise
-docker run --rm -v $(pwd):/src klakegg/hugo:0.93.2
+# run hugo
+hugo
 # [optional] send output to a log file for debugging
 echo Received request on $(date) >> /home/bloguser/deploy/log
 
 ```
 
-- For the sake of convenience, create a user defined systemd unit file for managing the service with systemctl. Take care to create the service unit file at the right location in the user's home directory. I used the steps from [this post](https://ansonvandoren.com/posts/deploy-hugo-from-github/) to set up the service. Do note that he uses nginx instead of Caddy.
+- For the sake of convenience, create a user defined systemd unit file for managing the service with systemctl. Take care to create the service unit file at the right location in the user's home directory. I used the steps from [this post](https://ansonvandoren.com/posts/deploy-hugo-from-github/) to set up the service. Do note that he uses nginx instead of Caddy but the unit file setup stays mostly the same.
 
 ```bash
 $ cat ~/.config/systemd/user/webhook.service
@@ -225,7 +231,7 @@ systemctl --user daemon-reload
 systemctl --user enable --now webhook
 
 # enable linger to run the service even when user is not logged in
-sudo loginctl enable-linger
+sudo loginctl enable-linger bloguser
 ```
 
 - Configure a webhook on the GitHub repo for the blog so that it pushes a payload when there's any change to the repo like a commit. 
@@ -255,11 +261,13 @@ deploy/
 
 ```
 
-### Cloudflare DNS
+### Cloudflare DNS Setup
 - Create an A record that points `tinkermachine.xyz` to the IPv4 address of the DigitalOcean VPS.
+- Create a CNAME record for the webhook endpoint which will be configured on GitHub.
 - Optional: Create a CNAME record for www pointing to tinkermachine.xyz
-- Optional: Create another CNAME record for blog (blog.tinkermachine.xyz) pointing to tinkermachine.xyz. This makes sure the old links which were initially on the blog subdomain get gracefully redirected to the main host.
-- Make sure that the required entries for these configurations are also present in the Caddyfile.
+- Optional: I've added a CNAME record for blog (blog.tinkermachine.xyz) to make sure the old links initially on the blog subdomain get gracefully redirected to the main host.
+
+Make sure that the required entries for these configurations are also present in the Caddyfile.
 
 ![CloudFlare DNS Settings](/images/posts/10_cf_dns_config.png)
 
