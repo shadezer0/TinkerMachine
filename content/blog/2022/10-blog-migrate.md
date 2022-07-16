@@ -279,3 +279,6 @@ After these changes, you will be able to hit the domain and see the blog if ever
 - Usually, it pays to have a good night's sleep and come back to some nagging problem later in the morning. This is something I struggle with as I get completely absorbed in whatever I'm working on at the moment.
 - Don't spend too much time and get caught up on the file/directory naming from the very start. This can be reworked later.
 - The setup doesn't need to be perfect in the beginning. It just needs to work and do what you want it to do. Improvements can always be made over time. Think about what the MVP would look like and aim for that.
+
+## Future Plans
+Use containerization to easily recreate this entire setup with the help of docker and docker compose.
